@@ -1,0 +1,65 @@
+/* MobileShell.module.css */
+
+/* ── Phone Frame ── */
+.phoneFrame {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  max-height: 932px;
+  margin: 0 auto;
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,0.15);
+}
+
+/* ── Page Content ── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Bottom Tab Bar ── */
+.tabBar {
+  height: 72px;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background: #ffffff;
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  flex-shrink: 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+}
+
+.tabItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: transform 0.15s ease;
+}
+
+.tabItem:active {
+  transform: scale(0.9);
+}
+
+.tabItem span {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #aaaaaa;
+  transition: color 0.2s ease;
+}
+
+.tabActive span {
+  color: #4285f4;
+  font-weight: 600;
+}
