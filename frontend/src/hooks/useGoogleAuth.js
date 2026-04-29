@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { useGoogleLogin } from '@react-oauth/google'
-import { loginWithGoogle, clearToken } from '../services/api'
+import { loginWithGoogle, clearToken, getSavedUser, isTokenValid } from '../services/api'
 
 /**
  * Custom Hook: useGoogleAuth
@@ -8,7 +8,15 @@ import { loginWithGoogle, clearToken } from '../services/api'
  * หลัง Google login → ส่ง accessToken ไปยัง backend เพื่อรับ JWT ของเรา
  */
 export function useGoogleAuth() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(() => {
+    // Restore session from localStorage if JWT is still valid
+    if (isTokenValid()) {
+      const saved = getSavedUser()
+      return saved || null
+    }
+    clearToken()
+    return null
+  })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 

@@ -6,6 +6,7 @@
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
 
 const TOKEN_KEY = 'cardio_jwt'
+const USER_KEY = 'cardio_user'
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY)
@@ -17,6 +18,31 @@ export function setToken(token) {
 
 export function clearToken() {
   localStorage.removeItem(TOKEN_KEY)
+  localStorage.removeItem(USER_KEY)
+}
+
+export function getSavedUser() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_KEY))
+  } catch {
+    return null
+  }
+}
+
+export function saveUser(user) {
+  localStorage.setItem(USER_KEY, JSON.stringify(user))
+}
+
+/** Returns true if JWT exists and is not expired */
+export function isTokenValid() {
+  const token = getToken()
+  if (!token) return false
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]))
+    return payload.exp * 1000 > Date.now()
+  } catch {
+    return false
+  }
 }
 
 async function request(path, options = {}) {
@@ -48,6 +74,7 @@ export async function loginWithGoogle(googleAccessToken) {
     body: JSON.stringify({ accessToken: googleAccessToken }),
   })
   setToken(data.accessToken)
+  saveUser(data.user)
   return data.user
 }
 
