@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import styles from './MainMenu.module.css'
 import { getWeekLogs, logCardio, resetDay as apiResetDay } from '../services/api'
+import CardioHistory from './CardioHistory'
 
 const GOAL = 300 // minutes per week
 const QUICK_OPTIONS = [15, 20, 30, 45, 60, 90]
@@ -23,6 +24,7 @@ function getTodayKey() {
 const DAY_LABELS = ['จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา']
 
 export default function MainMenu({ user }) {
+  const [activeTab, setActiveTab] = useState('log')
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   const [customInput, setCustomInput] = useState('')
@@ -124,6 +126,26 @@ export default function MainMenu({ user }) {
         )}
       </div>
 
+      {/* Tab Bar */}
+      <div className={styles.tabBar}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'log' ? styles.tabActive : ''}`}
+          onClick={() => setActiveTab('log')}
+        >
+          🏃 ล็อกคาร์ดิโอ
+        </button>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'history' ? styles.tabActive : ''}`}
+          onClick={() => setActiveTab('history')}
+        >
+          📊 ประวัติ
+        </button>
+      </div>
+
+      {activeTab === 'history' ? (
+        <CardioHistory />
+      ) : (
+      <>
       {/* Ring Progress */}
       <div className={`${styles.ringCard} ${flash ? styles.flash : ''}`}>
         <div className={styles.ringWrap}>
@@ -232,6 +254,8 @@ export default function MainMenu({ user }) {
       )}
 
       <div style={{ height: 16 }} />
+      </>
+      )}
     </div>
   )
 }

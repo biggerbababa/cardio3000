@@ -15,29 +15,6 @@
   box-shadow: 0 0 60px rgba(0,0,0,0.15);
 }
 
-/* ── Status Bar ── */
-.statusBar {
-  height: 44px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-
-.time {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #111111;
-  letter-spacing: 0.02em;
-}
-
-.statusIcons {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 /* ── Content ── */
 .content {
   flex: 1;

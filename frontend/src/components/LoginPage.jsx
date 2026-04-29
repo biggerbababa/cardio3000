@@ -11,32 +11,9 @@ const GoogleIcon = () => (
   </svg>
 )
 
-const StatusBar = () => (
-  <div className={styles.statusBar}>
-    <span className={styles.time}>
-      {new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })}
-    </span>
-    <div className={styles.statusIcons}>
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="#111">
-        <rect x="0" y="3" width="3" height="9" rx="1" />
-        <rect x="4.5" y="2" width="3" height="10" rx="1" />
-        <rect x="9" y="0.5" width="3" height="11.5" rx="1" />
-        <rect x="13.5" y="0" width="2" height="12" rx="1" opacity="0.3" />
-      </svg>
-      <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
-        <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#111" strokeOpacity="0.35"/>
-        <rect x="2" y="2" width="16" height="8" rx="2" fill="#111"/>
-        <path d="M23 4.5V7.5C23.8 7.2 24.5 6.7 24.5 6C24.5 5.3 23.8 4.8 23 4.5Z" fill="#111" fillOpacity="0.4"/>
-      </svg>
-    </div>
-  </div>
-)
-
 export default function LoginPage({ onLogin, isLoading, error }) {
   return (
     <div className={styles.phoneFrame}>
-      <StatusBar />
-
       <div className={styles.content}>
         <div className={styles.card}>
           {/* Brand */}

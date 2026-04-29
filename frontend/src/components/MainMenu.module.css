@@ -345,3 +345,34 @@
   background: #fff3cd;
 }
 
+/* ── Tab Bar ── */
+.tabBar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  background: #ebebeb;
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.tabBtn {
+  flex: 1;
+  background: none;
+  border: none;
+  border-radius: 11px;
+  padding: 10px 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #888888;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease, color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabActive {
+  background: #ffffff;
+  color: #111111;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+
